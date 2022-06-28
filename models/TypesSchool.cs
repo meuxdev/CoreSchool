@@ -8,7 +8,8 @@ namespace CoreSchool.Models
         ElementarySchool,
         MiddleSchool,
         HighSchool,
-        Degree
+        Degree,
+        Default
 
     }
 
