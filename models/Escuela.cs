@@ -6,7 +6,7 @@ namespace CoreSchool.Models
 
         public string Name
         {
-            get { return "Copy: " + this.name; }
+            get { return "Name School -> " + this.name; }
             set { this.name = value.ToUpper(); }
         }
 
@@ -16,8 +16,15 @@ namespace CoreSchool.Models
 
         public string City { get; set; }
 
+        public TypesSchool Type { get; set; }
+
         public School(string name, int foundationYear)
             => (Name, FoundationYear) = (name, foundationYear);
+
+        public override string ToString()
+        {
+            return $"{Name}\nType School -> {Type}\nFoundation Year -> {FoundationYear}\nCountry -> {Country}\nCity -> {City}" ;
+        }
 
     }
 

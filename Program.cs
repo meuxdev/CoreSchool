@@ -10,7 +10,8 @@ namespace Stage1
              var school = new School("Random School", 2012);
              school.Country =  "Random Country";
              school.City = "Random City";
-             Console.WriteLine(school.Name);
+             school.Type = TypesSchool.Online;
+             Console.WriteLine(school);
 
         }
     }
