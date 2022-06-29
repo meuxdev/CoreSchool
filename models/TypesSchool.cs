@@ -1,4 +1,4 @@
-namespace CoreSchool.Models 
+namespace CoreSchool.Models
 {
     public enum TypesSchool
     {
