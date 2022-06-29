@@ -1,8 +1,11 @@
+using static System.Console;
+
 namespace CoreSchool.Models
 {
-    class School
+    public class School
     {
         string name;
+        private List<Course> courses = new List<Course>();
 
         public string Name
         {
@@ -18,10 +21,12 @@ namespace CoreSchool.Models
 
         public TypesSchool Type { get; set; }
 
+        public List<Course> Courses { get => courses; set => courses = value; }
+
         public School(
-                string name, 
+                string name,
                 int foundationYear,
-                TypesSchool type=TypesSchool.Default)
+                TypesSchool type = TypesSchool.Default)
             => (Name, FoundationYear) = (name, foundationYear);
 
         public School(string name,
@@ -33,6 +38,24 @@ namespace CoreSchool.Models
             (Name, FoundationYear) = (name, foundationYear);
             (Country, City) = (country, city);
             Type = type;
+        }
+
+        public void PrintCourses()
+        {
+            WriteLine("=========================================");
+            WriteLine($"Courses for  {Name}\n");
+            if (Courses.Count > 0)
+            {
+                foreach (Course course in Courses)
+                {
+                    WriteLine(course);
+                }
+            }
+            else
+            {
+                WriteLine("Empty Courses...");
+            }
+            WriteLine("=========================================");
         }
 
         public override string ToString()

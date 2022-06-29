@@ -17,28 +17,10 @@ namespace Stage1
                                            city: "Random City"
                                            );
 
-            //! Creating the Courses
-            Course pythonCourse = new Course(){
-                Name = "Python Basic Course",
-                Schedule = TypesSchedule.Morning
-            };
+            Course.InitDemoCourses(ref school1);
 
-            Course javaCourse = new Course() {
-                Name = "Java Basic Course",
-                Schedule = TypesSchedule.Night
-            };
-
-            Course golangCourse = new Course() {
-                Name = "Golang Basic Course",
-                Schedule = TypesSchedule.Afternoon
-            };
-
-            Console.WriteLine(school);
-            Console.WriteLine(school1);
-            Console.WriteLine("==========");
-            Console.WriteLine(golangCourse);
-            Console.WriteLine(javaCourse);
-            Console.WriteLine(pythonCourse);
+            school.PrintCourses();
+            school1.PrintCourses();
 
         }
     }
