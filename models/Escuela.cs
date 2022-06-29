@@ -9,7 +9,7 @@ namespace CoreSchool.Models
 
         public string Name
         {
-            get { return "Name School -> " + this.name; }
+            get { return "School -> " + this.name; }
             set { this.name = value.ToUpper(); }
         }
 
@@ -24,8 +24,8 @@ namespace CoreSchool.Models
         public List<Course> Courses { get => courses; private set => courses = value; }
 
         public School(
-                string name,
-                int foundationYear,
+                string name = "Default Test School",
+                int foundationYear = 0,
                 TypesSchool type = TypesSchool.Default)
             => (Name, FoundationYear) = (name, foundationYear);
 
@@ -62,24 +62,10 @@ namespace CoreSchool.Models
             => (courses.Remove(course), course);
 
         public void RemoveByName(string name)
-        {
-            courses.RemoveAll(course => course.Name == name);
-            // Lambda anonym. Function
-            // Perfect for extra validation
-            // courses.RemoveAll(delegate (Course course)
-            // {
-            //     return course.Name == name;
-            // });
-
-        }
+             => courses.RemoveAll(course => course.Name == name);
 
         public void RemoveByNameAndSchedule(string name, TypesSchedule schedule)
             => courses.RemoveAll(course => course.Name == name && course.Schedule == schedule);
-
-        // private bool validationName(Course obj)
-        // {
-        //     return obj.Name == "Golang Basic Course";
-        // }
 
         public void AddCourse(Course newCourse)
             => courses.Add(newCourse);

@@ -15,10 +15,10 @@ namespace CoreSchool.Models
 
         public override string ToString()
         {
-            string chain = "            ---------------\n";
+            string chain = "---------------------------------------\n";
             chain += $"         Course ID: {Id}\n";
             chain += $"         Course Name: {Name}\n";
-            chain += $"          Course Schedule: {Schedule}\n";
+            chain += $"         Course Schedule: {Schedule}\n";
             chain += "          ---------------------\n";
             return chain;
         }
@@ -45,16 +45,9 @@ namespace CoreSchool.Models
                 Schedule = TypesSchedule.Afternoon
             };
 
-            Course golangCourseMorning = new Course()
-            {
-                Name = "Golang Basic Course",
-                Schedule = TypesSchedule.Morning
-            };
-
             school.Courses.Add(pythonCourse);
             school.Courses.Add(javaCourse);
             school.Courses.Add(golangCourse);
-            school.Courses.Add(golangCourseMorning);
         }
     }
 }
