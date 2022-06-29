@@ -45,9 +45,16 @@ namespace CoreSchool.Models
                 Schedule = TypesSchedule.Afternoon
             };
 
+            Course golangCourseMorning = new Course()
+            {
+                Name = "Golang Basic Course",
+                Schedule = TypesSchedule.Morning
+            };
+
+            school.Courses.Add(pythonCourse);
             school.Courses.Add(javaCourse);
             school.Courses.Add(golangCourse);
-            school.Courses.Add(pythonCourse);
+            school.Courses.Add(golangCourseMorning);
         }
     }
 }

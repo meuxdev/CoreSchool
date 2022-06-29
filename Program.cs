@@ -19,7 +19,8 @@ namespace Stage1
 
             Course.InitDemoCourses(ref school1);
 
-            Course tmpCourse = new Course(){
+            Course tmpCourse = new Course()
+            {
                 Name = "Summer Course",
                 Schedule = TypesSchedule.Morning
             };
@@ -28,7 +29,9 @@ namespace Stage1
             school1.PrintCourses();
             school1.RemoveCourseByRef(tmpCourse);
             school1.PrintCourses();
-            school1.RemoveByName("Golang Basic Course");
+            school1.RemoveByNameAndSchedule(
+                "Golang Basic Course",
+                TypesSchedule.Afternoon);
             school1.PrintCourses();
 
         }

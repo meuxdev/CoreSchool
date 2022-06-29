@@ -60,23 +60,30 @@ namespace CoreSchool.Models
 
         public (bool, Course) RemoveCourseByRef(Course course)
             => (courses.Remove(course), course);
-        
+
         public void RemoveByName(string name)
         {
-            Predicate<Course> nameValidation = validationName;
-            // courses.RemoveAll(course => course.Name == name);
-            courses.RemoveAll(nameValidation);
+            courses.RemoveAll(course => course.Name == name);
+            // Lambda anonym. Function
+            // Perfect for extra validation
+            // courses.RemoveAll(delegate (Course course)
+            // {
+            //     return course.Name == name;
+            // });
 
         }
 
-        private bool validationName(Course obj)
-        {
-            return obj.Name == "Golang Basic Course";
-        }
+        public void RemoveByNameAndSchedule(string name, TypesSchedule schedule)
+            => courses.RemoveAll(course => course.Name == name && course.Schedule == schedule);
+
+        // private bool validationName(Course obj)
+        // {
+        //     return obj.Name == "Golang Basic Course";
+        // }
 
         public void AddCourse(Course newCourse)
             => courses.Add(newCourse);
-        
+
         public void AddCourses(List<Course> newCourses)
             => courses.AddRange(newCourses);
 
