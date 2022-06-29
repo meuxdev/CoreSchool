@@ -1,5 +1,6 @@
 ﻿using System;
 using CoreSchool.Models;
+using CoreSchool.Util;
 
 namespace CoreSchool
 {
@@ -7,6 +8,7 @@ namespace CoreSchool
     {
         static void Main(string[] args)
         {
+            Printer.MakeBeep();
             EngineSchool eng = new EngineSchool();
             eng.Init();
 
@@ -17,6 +19,8 @@ namespace CoreSchool
 
             eng.School.AddCourse(newCourse);
             eng.School.PrintCourses();
+            Console.WriteLine("ENTER to continue ...");
+            Console.ReadLine();
         }
     }
 

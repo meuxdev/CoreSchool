@@ -1,4 +1,5 @@
 using System;
+using CoreSchool.Util;
 
 namespace CoreSchool.Models
 {
@@ -15,11 +16,10 @@ namespace CoreSchool.Models
 
         public override string ToString()
         {
-            string chain = "---------------------------------------\n";
-            chain += $"         Course ID: {Id}\n";
-            chain += $"         Course Name: {Name}\n";
-            chain += $"         Course Schedule: {Schedule}\n";
-            chain += "          ---------------------\n";
+            string chain = Printer.GetLine(length: 70) + "\n";
+            chain += $"     Course ID: {Id}\n";
+            chain += $"     Course Name: {Name}\n";
+            chain += $"     Course Schedule: {Schedule}\n";
             return chain;
         }
 

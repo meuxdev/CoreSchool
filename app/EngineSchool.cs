@@ -1,4 +1,5 @@
 using CoreSchool.Models;
+using CoreSchool.Util;
 
 namespace CoreSchool
 {
@@ -15,6 +16,7 @@ namespace CoreSchool
 
         public void Init()
         {
+            Printer.WriteTitle("Initializing the School with default information...");
             Course.InitDemoCourses(ref this.school);
         }
     }

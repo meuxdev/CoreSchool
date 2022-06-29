@@ -1,3 +1,4 @@
+using CoreSchool.Util;
 using static System.Console;
 
 namespace CoreSchool.Models
@@ -42,8 +43,8 @@ namespace CoreSchool.Models
 
         public void PrintCourses()
         {
-            WriteLine("=========================================");
-            WriteLine($"Courses for  {Name}\n");
+            string title = $"Courses for  {Name}";
+            Printer.WriteTitle(title);
             if (Courses.Count > 0)
             {
                 foreach (Course course in Courses)
@@ -55,7 +56,7 @@ namespace CoreSchool.Models
             {
                 WriteLine("Empty Courses...");
             }
-            WriteLine("=========================================");
+            Printer.DrawLine(length: title.Length);
         }
 
         public (bool, Course) RemoveCourseByRef(Course course)
@@ -75,7 +76,10 @@ namespace CoreSchool.Models
 
         public override string ToString()
         {
-            return $"---------------\n{Name}\nType School -> {Type}\nFoundation Year -> {FoundationYear}\nCountry -> {Country}\nCity -> {City}\n----------------";
+            string chain = Printer.GetLine(length: 100);
+            chain += $"\n{Name}\nType School -> {Type}\nFoundation Year -> {FoundationYear}\nCountry -> {Country}\nCity -> {City}\n";
+            chain += Printer.GetLine(length: 100);
+            return chain;
         }
 
     }
