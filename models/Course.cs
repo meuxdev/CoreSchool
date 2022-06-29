@@ -3,11 +3,11 @@ using CoreSchool.Util;
 
 namespace CoreSchool.Models
 {
-    public class Course
+    public class Course : Entity
     {
-        public string Id { get; private set; }
-        public string Name { get; set; }
         public TypesSchedule Schedule { get; set; }
+        public List<Assignment> Assignments { get; set; }
+        public List<Student> Students { get; set; }
 
         public Course()
         {

@@ -3,10 +3,11 @@ using static System.Console;
 
 namespace CoreSchool.Models
 {
-    public class School
+    public class School : Entity
     {
         string name;
         private List<Course> courses = new List<Course>();
+
 
         public string Name
         {
@@ -24,21 +25,17 @@ namespace CoreSchool.Models
 
         public List<Course> Courses { get => courses; private set => courses = value; }
 
-        public School(
-                string name = "Default Test School",
-                int foundationYear = 0,
-                TypesSchool type = TypesSchool.Default)
-            => (Name, FoundationYear) = (name, foundationYear);
-
-        public School(string name,
-                     int foundationYear,
-                     TypesSchool type,
+        public School(string name = "Default Name School",
+                     int foundationYear = 0,
+                     TypesSchool type = TypesSchool.Default,
                      string country = "Default Country",
                      string city = "Default City")
         {
-            (Name, FoundationYear) = (name, foundationYear);
+            Name = name;
+            FoundationYear = foundationYear;
+            type = Type;
             (Country, City) = (country, city);
-            Type = type;
+            Id = Guid.NewGuid().ToString();
         }
 
         public void PrintCourses()
