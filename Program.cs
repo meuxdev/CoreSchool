@@ -18,7 +18,6 @@ namespace Stage1
                                            );
 
             Course.InitDemoCourses(ref school1);
-
             school.PrintCourses();
             school1.PrintCourses();
 
