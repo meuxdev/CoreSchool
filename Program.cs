@@ -18,7 +18,17 @@ namespace Stage1
                                            );
 
             Course.InitDemoCourses(ref school1);
-            school.PrintCourses();
+
+            Course tmpCourse = new Course(){
+                Name = "Summer Course",
+                Schedule = TypesSchedule.Morning
+            };
+
+            school1.AddCourse(tmpCourse);
+            school1.PrintCourses();
+            school1.RemoveCourseByRef(tmpCourse);
+            school1.PrintCourses();
+            school1.RemoveByName("Golang Basic Course");
             school1.PrintCourses();
 
         }

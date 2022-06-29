@@ -18,6 +18,7 @@ namespace CoreSchool.Models
             string chain = "            ---------------\n";
             chain += $"         Course ID: {Id}\n";
             chain += $"         Course Name: {Name}\n";
+            chain += $"          Course Schedule: {Schedule}\n";
             chain += "          ---------------------\n";
             return chain;
         }

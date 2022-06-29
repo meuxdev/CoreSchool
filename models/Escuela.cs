@@ -21,7 +21,7 @@ namespace CoreSchool.Models
 
         public TypesSchool Type { get; set; }
 
-        public List<Course> Courses { get => courses; set => courses = value; }
+        public List<Course> Courses { get => courses; private set => courses = value; }
 
         public School(
                 string name,
@@ -57,6 +57,28 @@ namespace CoreSchool.Models
             }
             WriteLine("=========================================");
         }
+
+        public (bool, Course) RemoveCourseByRef(Course course)
+            => (courses.Remove(course), course);
+        
+        public void RemoveByName(string name)
+        {
+            Predicate<Course> nameValidation = validationName;
+            // courses.RemoveAll(course => course.Name == name);
+            courses.RemoveAll(nameValidation);
+
+        }
+
+        private bool validationName(Course obj)
+        {
+            return obj.Name == "Golang Basic Course";
+        }
+
+        public void AddCourse(Course newCourse)
+            => courses.Add(newCourse);
+        
+        public void AddCourses(List<Course> newCourses)
+            => courses.AddRange(newCourses);
 
         public override string ToString()
         {
