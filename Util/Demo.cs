@@ -26,23 +26,19 @@ namespace CoreSchool.Util
             school.AddCourses(courses);
         }
 
-        public static void InitStudents(Course course)
+        public static void InitStudents(Course course, int groupSize)
         {
-            string[] name = { "Freddy", "Alex", "Jorge", "Josh", "Chris"};
-            string[] middleName = { "Felix", "John", "Robert", "Samuel", "Rick"};
-            string[] lastName = { "Ruiz","Trump", "Toledo", "Herrera" };
+            string[] name = { "Freddy", "Alex", "Jorge", "Josh", "Chris" };
+            string[] middleName = { "Felix", "John", "Robert", "Samuel", "Rick" };
+            string[] lastName = { "Ruiz", "Trump", "Toledo", "Herrera" };
 
-            var listStudents = from n in name 
-                                from mn in middleName 
+            IEnumerable<Student> query = from n in name
+                               from mn in middleName
                                from l in lastName
                                select new Student { Name = $"{n} {mn} {l}" };
 
-            List<Student> students = new List<Student>(){
-                new Student() { Name = "Josh" },
-                new Student() { Name = "Bob" },
-                new Student() { Name = "Fred" }
-            };
-            course.AddStudents(listStudents);
+            List<Student> students = query.OrderBy(student => student.Id).Take(groupSize).ToList();
+            course.AddStudents(students);
         }
 
 

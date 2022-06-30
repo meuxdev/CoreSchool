@@ -18,8 +18,10 @@ namespace CoreSchool
         {
             Printer.WriteTitle("Initializing the School with default information...");
             Demo.InitCourses(ref this.school);
+
+            Random rnd = new Random();
             foreach(Course course in this.school.Courses){
-                Demo.InitStudents(course);
+                Demo.InitStudents(course, rnd.Next(5, 20));
                 Demo.InitAssignments(course);
             }
         }

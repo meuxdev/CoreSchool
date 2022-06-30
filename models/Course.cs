@@ -25,7 +25,7 @@ namespace CoreSchool.Models
             return chain;
         }
 
-        public void AddStudents(IEnumerable<Student> students)
+        public void AddStudents(List<Student> students)
             => Students.AddRange(students);
 
         public void AddAssignments(List<Assignment> assignments)
