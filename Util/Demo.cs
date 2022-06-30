@@ -54,18 +54,19 @@ namespace CoreSchool.Util
         }
 
         public static float RandomScore()
-            => ((float)rnd.NextDouble()) * 5;
+            => ((float)Math.Round(rnd.NextDouble(), 1)) * 5;
 
         public static void InitScore(Course course)
         {
             IEnumerable<Score> query = from student in course.Students
                                        from assign in course.Assignments
-                                       select new Score {
-                                        StudentId = student.Id, 
-                                        AssignmentId = assign.Id, 
-                                        Note = new float[5]{RandomScore(), RandomScore(), RandomScore(), RandomScore(), RandomScore()}
-                                        };
-                                        
+                                       select new Score
+                                       {
+                                           StudentName = student.Name,
+                                           AssignmentName = assign.Name,
+                                           Notes = new float[5] { RandomScore(), RandomScore(), RandomScore(), RandomScore(), RandomScore() }
+                                       };
+
             course.LoadScores(query.ToList());
         }
     }

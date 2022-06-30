@@ -8,7 +8,6 @@ namespace CoreSchool.Models
         public TypesSchedule Schedule { get; set; }
         public List<Assignment> Assignments { get; set; }
         public List<Student> Students { get; set; }
-
         public List<Score> Scores { get; set; }
 
         public Course()
@@ -38,7 +37,7 @@ namespace CoreSchool.Models
             => Students.Add(student);
         public void AddAssignment(Assignment assignment)
             => Assignments.Add(assignment);
-        
+
         public void LoadScores(List<Score> scores)
             => Scores.AddRange(scores);
 
@@ -71,6 +70,23 @@ namespace CoreSchool.Models
             else
             {
                 Printer.WriteTitle("No Assignments in this course");
+            }
+        }
+
+        public void PrintScores()
+        {
+            Printer.WriteTitle($"Scores for the for the course {Name}");
+            if (Scores.Count > 0)
+            {
+                foreach (Score s in Scores)
+                {
+                    Console.WriteLine(s);
+                }
+
+            }
+            else
+            {
+                Printer.WriteTitle("No Scores in this course");
             }
         }
     }

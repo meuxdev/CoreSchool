@@ -85,6 +85,14 @@ namespace CoreSchool.Models
             }
         }
 
+        public void PrintAllScores()
+        {
+            foreach (Course c in Courses)
+            {
+                c.PrintScores();
+            }
+        }
+
         public override string ToString()
         {
             string chain = Printer.GetLine(length: 100);
