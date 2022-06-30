@@ -17,7 +17,13 @@ namespace CoreSchool
         public void Init()
         {
             Printer.WriteTitle("Initializing the School with default information...");
-            Course.InitDemoCourses(ref this.school);
+            Demo.InitCourses(ref this.school);
+            foreach(Course course in this.school.Courses){
+                Demo.InitStudents(course);
+                Demo.InitAssignments(course);
+            }
         }
+
+        
     }
 }

@@ -19,6 +19,10 @@ namespace CoreSchool
 
             eng.School.AddCourse(newCourse);
             eng.School.PrintCourses();
+            eng.School.PrintAllStudents();
+            eng.School.PrintAllAssignments();
+           
+            
             Printer.EnterPause();
         }
     }

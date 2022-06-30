@@ -8,7 +8,6 @@ namespace CoreSchool.Models
         string name;
         private List<Course> courses = new List<Course>();
 
-
         public string Name
         {
             get { return "School -> " + this.name; }
@@ -70,6 +69,21 @@ namespace CoreSchool.Models
 
         public void AddCourses(List<Course> newCourses)
             => courses.AddRange(newCourses);
+        public void PrintAllStudents()
+        {
+            foreach (Course c in Courses)
+            {
+                c.PrintStudents();
+            }
+        }
+
+        public void PrintAllAssignments()
+        {
+            foreach (Course c in Courses)
+            {
+                c.PrintAssignments();
+            }
+        }
 
         public override string ToString()
         {

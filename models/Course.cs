@@ -12,6 +12,8 @@ namespace CoreSchool.Models
         public Course()
         {
             Id = Guid.NewGuid().ToString();
+            Students = new List<Student>();
+            Assignments = new List<Assignment>();
         }
 
         public override string ToString()
@@ -23,31 +25,47 @@ namespace CoreSchool.Models
             return chain;
         }
 
-        public static void InitDemoCourses(ref School school)
+        public void AddStudents(IEnumerable<Student> students)
+            => Students.AddRange(students);
+
+        public void AddAssignments(List<Assignment> assignments)
+            => Assignments.AddRange(assignments);
+
+        public void AddStudent(Student student)
+            => Students.Add(student);
+        public void AddAssignment(Assignment assignment)
+            => Assignments.Add(assignment);
+
+        public void PrintStudents()
         {
-            //! Demo function that inits the courses
-            // Creating the Courses
-            Course pythonCourse = new Course()
+            Printer.WriteTitle($"Students for the course {Name}");
+            if (Students.Count > 0)
             {
-                Name = "Python Basic Course",
-                Schedule = TypesSchedule.Morning
-            };
-
-            Course javaCourse = new Course()
+                foreach (Student s in Students)
+                {
+                    Console.WriteLine(s);
+                }
+            }
+            else
             {
-                Name = "Java Basic Course",
-                Schedule = TypesSchedule.Night
-            };
+                Printer.WriteTitle("No students in this course");
+            }
+        }
 
-            Course golangCourse = new Course()
+        public void PrintAssignments()
+        {
+            Printer.WriteTitle($"Assignments for the course {Name}");
+            if (Students.Count > 0)
             {
-                Name = "Golang Basic Course",
-                Schedule = TypesSchedule.Afternoon
-            };
-
-            school.Courses.Add(pythonCourse);
-            school.Courses.Add(javaCourse);
-            school.Courses.Add(golangCourse);
+                foreach (Assignment a in Assignments)
+                {
+                    Console.WriteLine(a);
+                }
+            }
+            else
+            {
+                Printer.WriteTitle("No Assignments in this course");
+            }
         }
     }
 }
