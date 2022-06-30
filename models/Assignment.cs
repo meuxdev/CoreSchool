@@ -8,9 +8,9 @@ namespace CoreSchool.Models
         public Assignment() => Id = Guid.NewGuid().ToString();
 
         public override string ToString()
-        {   
-            
-            return Printer.GetLine(20) + ($"\nAssignment: {Name}\n Assignment ID: {Id}"); 
+        {
+
+            return Printer.GetLine(20) + ($"\nAssignment: {Name}\n Assignment ID: {Id}");
         }
     }
 }

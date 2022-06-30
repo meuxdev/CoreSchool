@@ -20,12 +20,14 @@ namespace CoreSchool
             Demo.InitCourses(ref this.school);
 
             Random rnd = new Random();
-            foreach(Course course in this.school.Courses){
+            foreach (Course course in this.school.Courses)
+            {
                 Demo.InitStudents(course, rnd.Next(5, 20));
                 Demo.InitAssignments(course);
+                Demo.InitScore(course);
             }
         }
 
-        
+
     }
 }

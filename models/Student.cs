@@ -10,13 +10,13 @@ namespace CoreSchool.Models
         {
             // Init with default random students names.
 
-          
+
         }
 
         public override string ToString()
-        {   
-            
-            return Printer.GetLine(30) + ($"\nStudent Name: {Name}\n Student ID: {Id}"); 
+        {
+
+            return Printer.GetLine(30) + ($"\nStudent Name: {Name}\n Student ID: {Id}");
         }
     }
 }

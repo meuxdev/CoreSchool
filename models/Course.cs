@@ -9,11 +9,14 @@ namespace CoreSchool.Models
         public List<Assignment> Assignments { get; set; }
         public List<Student> Students { get; set; }
 
+        public List<Score> Scores { get; set; }
+
         public Course()
         {
             Id = Guid.NewGuid().ToString();
             Students = new List<Student>();
             Assignments = new List<Assignment>();
+            Scores = new List<Score>();
         }
 
         public override string ToString()
@@ -35,6 +38,9 @@ namespace CoreSchool.Models
             => Students.Add(student);
         public void AddAssignment(Assignment assignment)
             => Assignments.Add(assignment);
+        
+        public void LoadScores(List<Score> scores)
+            => Scores.AddRange(scores);
 
         public void PrintStudents()
         {
