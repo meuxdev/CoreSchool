@@ -1,6 +1,9 @@
+using System.Diagnostics;
+
 namespace CoreSchool.Models
-{
-    public class Score
+{   
+    [DebuggerDisplay("{StudentName} {GetNotesString()}")]
+    public class Score: Entity
     {
         private float[] note = new float[5];
 
@@ -8,7 +11,6 @@ namespace CoreSchool.Models
         public string StudentName { get; set; }
         public string AssignmentName { get; set; }
         public float[] Notes { get => note; set => note = value; }
-        public Score() => ScoreId = Guid.NewGuid().ToString();
 
         private string GetNotesString()
         {

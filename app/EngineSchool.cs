@@ -3,16 +3,11 @@ using CoreSchool.Util;
 
 namespace CoreSchool
 {
-    class EngineSchool
+    sealed class EngineSchool
     {
         private School school = new School();
 
         public School School { get => school; private set => school = value; }
-
-
-        public EngineSchool()
-        {
-        }
 
         public void Init()
         {
@@ -26,6 +21,23 @@ namespace CoreSchool
                 Demo.InitAssignments(course);
                 Demo.InitScore(course);
             }
+        }
+
+        public List<Entity> GetObjEntity()
+        {
+            List<Entity> listObj = new List<Entity>();
+
+            listObj.Add(School);
+            listObj.AddRange(School.Courses);
+
+            foreach(var course in School.Courses)
+            {
+                listObj.AddRange(course.Assignments);
+                listObj.AddRange(course.Students);
+                listObj.AddRange(course.Scores);
+            }
+
+            return listObj;
         }
 
 

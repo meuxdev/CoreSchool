@@ -1,18 +1,14 @@
 using CoreSchool.Util;
 using static System.Console;
+using System.Diagnostics;
 
 namespace CoreSchool.Models
 {
+
+    [DebuggerDisplay("{Name} - {Type} - {Country}")]
     public class School : Entity
     {
-        string name;
         private List<Course> courses = new List<Course>();
-
-        public string Name
-        {
-            get { return "School -> " + this.name; }
-            set { this.name = value.ToUpper(); }
-        }
 
         public int FoundationYear { get; set; }
 
@@ -30,11 +26,11 @@ namespace CoreSchool.Models
                      string country = "Default Country",
                      string city = "Default City")
         {
+
             Name = name;
             FoundationYear = foundationYear;
             type = Type;
             (Country, City) = (country, city);
-            Id = Guid.NewGuid().ToString();
         }
 
         public void PrintCourses()
@@ -102,6 +98,4 @@ namespace CoreSchool.Models
         }
 
     }
-
 }
-

@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics;
 using CoreSchool.Util;
 
 namespace CoreSchool.Models
 {
-    public class Course : Entity
+    [DebuggerDisplay("{Name}, {Schedule} {GetType()}")]
+    public sealed class Course : Entity
     {
         public TypesSchedule Schedule { get; set; }
         public List<Assignment> Assignments { get; set; }
@@ -12,7 +14,6 @@ namespace CoreSchool.Models
 
         public Course()
         {
-            Id = Guid.NewGuid().ToString();
             Students = new List<Student>();
             Assignments = new List<Assignment>();
             Scores = new List<Score>();
