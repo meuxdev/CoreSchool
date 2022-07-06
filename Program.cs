@@ -23,28 +23,33 @@ namespace CoreSchool
             // eng.School.PrintAllStudents();
             // eng.School.PrintAllAssignments();
             // eng.School.PrintAllScores();
-            List<Entity> objs = eng.GetObjEntity();
-            WriteLine(objs.Count());
+            List<Entity> objs = eng.GetObjEntity(
+                out int countScores,
+                out int countStudents,
+                out int countAssigns,
+                out int countCourses
+            );
 
             var ILocationList = from obj in objs
                                 where obj is ILocation
-                                select (ILocation) obj;
+                                select (ILocation)obj;
 
-            var StudentsList = from obj in objs 
+            var StudentsList = from obj in objs
                                where obj is Student
-                               select (Student) obj;
+                               select (Student)obj;
 
-            foreach(Entity ob in objs)
+            foreach (Entity ob in objs)
             {
-                if(ob is Assignment){
+                if (ob is Assignment)
+                {
                     WriteLine(ob);
                 }
             }
-            
+
             // eng.School.CleanLocation();
 
             Printer.EnterPause();
-        
+
         }
     }
 

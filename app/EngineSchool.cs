@@ -23,23 +23,50 @@ namespace CoreSchool
             }
         }
 
-        public List<Entity> GetObjEntity()
+        public List<Entity> GetObjEntity(
+            out int countScores,
+            out int countStudents,
+            out int countAssigns,
+            out int countCourses,
+            bool getScores = true,
+            bool getStudents = true,
+            bool getAssignments = true,
+            bool getCourses = true
+        )
         {
             List<Entity> listObj = new List<Entity>();
+            countScores = countStudents = countAssigns = 0;
 
             listObj.Add(School);
-            listObj.AddRange(School.Courses);
 
-            foreach(var course in School.Courses)
+            if (getCourses)
             {
-                listObj.AddRange(course.Assignments);
-                listObj.AddRange(course.Students);
-                listObj.AddRange(course.Scores);
+                listObj.AddRange(School.Courses);
             }
 
-            return listObj;
+
+            countCourses = school.Courses.Count;
+            foreach (var course in School.Courses)
+            {
+                if (getAssignments)
+                {
+                    listObj.AddRange(course.Assignments);
+                    countAssigns += course.Assignments.Count;
+                }
+
+                if (getStudents)
+                {
+                    listObj.AddRange(course.Students);
+                    countStudents += course.Students.Count;
+                }
+
+                if (getScores)
+                {
+                    listObj.AddRange(course.Scores);
+                    countScores += course.Scores.Count;
+                }
+            }
+        return listObj;
         }
-
-
     }
 }

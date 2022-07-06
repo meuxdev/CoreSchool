@@ -18,6 +18,7 @@ namespace CoreSchool.Models
             Students = new List<Student>();
             Assignments = new List<Assignment>();
             Scores = new List<Score>();
+            
         }
 
         public override string ToString()
