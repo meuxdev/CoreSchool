@@ -9,6 +9,8 @@ namespace CoreSchool
     {
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.ProcessExit += ExitEventAction;
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.SoundBeep(2000,100000);
             EngineSchool eng = new EngineSchool();
             eng.Init();
 
@@ -68,6 +70,13 @@ namespace CoreSchool
             eng.PrintDic(dic, printScores: true, printAssignments: false, printStudents: false, printCourses: false);
             Printer.EnterPause();
 
+        }
+
+        private static void ExitEventAction(object? sender, EventArgs e)
+        {
+            Printer.WriteTitle("Exiting....");
+            Printer.SoundBeep(3000, 1000, 3);
+            Printer.WriteTitle("Bye!");
         }
     }
 
