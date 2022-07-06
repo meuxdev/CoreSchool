@@ -23,8 +23,11 @@ namespace CoreSchool
             // eng.School.PrintAllStudents();
             // eng.School.PrintAllAssignments();
             // eng.School.PrintAllScores();
-            List<Entity> objs = eng.GetObjEntity(
-                // out parameters can not be optional.
+            IReadOnlyList<Entity> objs = eng.GetObjEntity(
+                out int countScores,
+                out int countStudents,
+                out int countAssigns,
+                out int countCourses
             );
 
             var ILocationList = from obj in objs
