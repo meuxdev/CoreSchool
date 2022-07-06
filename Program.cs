@@ -24,10 +24,7 @@ namespace CoreSchool
             // eng.School.PrintAllAssignments();
             // eng.School.PrintAllScores();
             List<Entity> objs = eng.GetObjEntity(
-                out int countScores,
-                out int countStudents,
-                out int countAssigns,
-                out int countCourses
+                // out parameters can not be optional.
             );
 
             var ILocationList = from obj in objs

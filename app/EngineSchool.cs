@@ -24,6 +24,16 @@ namespace CoreSchool
         }
 
         public List<Entity> GetObjEntity(
+                    bool getScores = true,
+                    bool getStudents = true,
+                    bool getAssignments = true,
+                    bool getCourses = true
+                )
+        {
+            return GetObjEntity(out int _d, out _d, out _d, out _d);
+        }
+
+        public List<Entity> GetObjEntity(
             out int countScores,
             out int countStudents,
             out int countAssigns,
@@ -66,7 +76,7 @@ namespace CoreSchool
                     countScores += course.Scores.Count;
                 }
             }
-        return listObj;
+            return listObj;
         }
     }
 }
