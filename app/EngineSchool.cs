@@ -59,12 +59,36 @@ namespace CoreSchool
             return dic;
         }
 
-        public void PrintDic(Dictionary<KeysDicEnum, IEnumerable<Entity>> dic)
+        public void PrintDic(
+            Dictionary<KeysDicEnum, IEnumerable<Entity>> dic,
+            bool printScores = false,
+            bool printStudents = true,
+            bool printAssignments = true,
+            bool printCourses = true 
+        )
         {
-            foreach (KeyValuePair<KeysDicEnum, IEnumerable<Entity>> kp in dic)
+            foreach (KeyValuePair<KeysDicEnum, IEnumerable<Entity>> kv in dic)
             {
-                Printer.WriteTitle(kp.Key.ToString());
-                foreach (Entity entity in kp.Value)
+                if ((kv.Key == KeysDicEnum.Scores && !printScores) ||
+                    (kv.Key == KeysDicEnum.Students && !printStudents) ||
+                    (kv.Key == KeysDicEnum.Courses && !printCourses) ||
+                    (kv.Key == KeysDicEnum.Assignments && !printAssignments))
+                    continue;
+
+                // if (kv.Key == KeysDicEnum.Scores && !printScores)
+                //     continue;
+
+                // if (kv.Key == KeysDicEnum.Students && !printStudents)
+                //     continue;
+
+                // if (kv.Key == KeysDicEnum.Courses && !printCourses)
+                //     continue;
+
+                // if (kv.Key == KeysDicEnum.Assignments && !printAssignments)
+                //     continue;
+
+                Printer.WriteTitle(kv.Key.ToString());
+                foreach (Entity entity in kv.Value)
                 {
                     Console.WriteLine(entity);
                 }

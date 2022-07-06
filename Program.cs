@@ -38,13 +38,13 @@ namespace CoreSchool
                                where obj is Student
                                select (Student)obj;
 
-            foreach (Entity ob in objs)
-            {
-                if (ob is Assignment)
-                {
-                    WriteLine(ob);
-                }
-            }
+            // foreach (Entity ob in objs)
+            // {
+            //     if (ob is Assignment)
+            //     {
+            //         WriteLine(ob);
+            //     }
+            // }
 
             // eng.School.CleanLocation();
 
@@ -65,7 +65,7 @@ namespace CoreSchool
             var dic = eng.GetObjDictionary();
 
             Console.WriteLine("Dict build completed!");
-            eng.PrintDic(dic);
+            eng.PrintDic(dic, printScores: true, printAssignments: false, printStudents: false, printCourses: false);
             Printer.EnterPause();
 
         }
