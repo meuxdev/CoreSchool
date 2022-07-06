@@ -19,7 +19,7 @@ namespace CoreSchool.Models
     {
         Courses,
         Students,
-        Assignment,
+        Assignments,
         Scores,
         School
     }

@@ -61,6 +61,11 @@ namespace CoreSchool
             // dic[key] = "Coppe";
             // Console.WriteLine($"Key: {key}\n Value: {dic[key]}");
 
+            // Dictionary<KeysDicEnum, IEnumerable<Entity>> dic = eng.GetObjDictionary();
+            var dic = eng.GetObjDictionary();
+
+            Console.WriteLine("Dict build completed!");
+            eng.PrintDic(dic);
             Printer.EnterPause();
 
         }

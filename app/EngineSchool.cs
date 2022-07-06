@@ -35,15 +35,40 @@ namespace CoreSchool
 
         public Dictionary<KeysDicEnum, IEnumerable<Entity>> GetObjDictionary()
         {
-           
-          
-         
             var dic = new Dictionary<KeysDicEnum, IEnumerable<Entity>>();
-            dic.Add(KeysDicEnum.School, new []{School});
+
+
+            dic.Add(KeysDicEnum.School, new[] { School });
             dic.Add(KeysDicEnum.Courses, School.Courses.Cast<Entity>());
 
+            var studentList = new List<Student>();
+            var scoreList = new List<Score>();
+            var assignList = new List<Assignment>();
+
+            foreach (Course c in School.Courses)
+            {
+                studentList.AddRange(c.Students);
+                scoreList.AddRange(c.Scores);
+                assignList.AddRange(c.Assignments);
+            }
+
+            dic.Add(KeysDicEnum.Students, studentList);
+            dic.Add(KeysDicEnum.Scores, scoreList);
+            dic.Add(KeysDicEnum.Assignments, assignList);
 
             return dic;
+        }
+
+        public void PrintDic(Dictionary<KeysDicEnum, IEnumerable<Entity>> dic)
+        {
+            foreach (KeyValuePair<KeysDicEnum, IEnumerable<Entity>> kp in dic)
+            {
+                Printer.WriteTitle(kp.Key.ToString());
+                foreach (Entity entity in kp.Value)
+                {
+                    Console.WriteLine(entity);
+                }
+            }
         }
 
         public IReadOnlyList<Entity> GetObjEntity(
