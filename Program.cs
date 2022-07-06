@@ -49,17 +49,17 @@ namespace CoreSchool
             // eng.School.CleanLocation();
 
             // * Dictionary example
-            Dictionary<int, string> dic = new Dictionary<int, string>();
-            dic.Add(1, "Alejandro");
-            dic.Add(3, "Jorge");
+            // Dictionary<int, string> dic = new Dictionary<int, string>();
+            // dic.Add(1, "Alejandro");
+            // dic.Add(3, "Jorge");
 
-            foreach(KeyValuePair<int, string> kp in dic)
-            {
-                Console.WriteLine($"Key: {kp.Key} \nValue: {kp.Value}");
-            }
-            int key = 23;
-            dic[key] = "Coppe";
-            Console.WriteLine($"Key: {key}\n Value: {dic[key]}");
+            // foreach(KeyValuePair<int, string> kp in dic)
+            // {
+            //     Console.WriteLine($"Key: {kp.Key} \nValue: {kp.Value}");
+            // }
+            // int key = 23;
+            // dic[key] = "Coppe";
+            // Console.WriteLine($"Key: {key}\n Value: {dic[key]}");
 
             Printer.EnterPause();
 

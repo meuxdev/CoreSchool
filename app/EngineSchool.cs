@@ -33,6 +33,19 @@ namespace CoreSchool
             return GetObjEntity(out int _d, out _d, out _d, out _d);
         }
 
+        public Dictionary<KeysDicEnum, IEnumerable<Entity>> GetObjDictionary()
+        {
+           
+          
+         
+            var dic = new Dictionary<KeysDicEnum, IEnumerable<Entity>>();
+            dic.Add(KeysDicEnum.School, new []{School});
+            dic.Add(KeysDicEnum.Courses, School.Courses.Cast<Entity>());
+
+
+            return dic;
+        }
+
         public IReadOnlyList<Entity> GetObjEntity(
             out int countScores,
             out int countStudents,
