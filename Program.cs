@@ -26,6 +26,14 @@ namespace CoreSchool
             List<Entity> objs = eng.GetObjEntity();
             WriteLine(objs.Count());
 
+            var ILocationList = from obj in objs
+                                where obj is ILocation
+                                select (ILocation) obj;
+
+            var StudentsList = from obj in objs 
+                               where obj is Student
+                               select (Student) obj;
+
             foreach(Entity ob in objs)
             {
                 if(ob is Assignment){
@@ -33,7 +41,10 @@ namespace CoreSchool
                 }
             }
             
+            // eng.School.CleanLocation();
+
             Printer.EnterPause();
+        
         }
     }
 

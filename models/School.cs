@@ -6,8 +6,9 @@ namespace CoreSchool.Models
 {
 
     [DebuggerDisplay("{Name} - {Type} - {Country}")]
-    public class School : Entity
+    public class School : Entity, ILocation
     {
+        #region PropsAndConstructor
         private List<Course> courses = new List<Course>();
 
         public int FoundationYear { get; set; }
@@ -15,6 +16,9 @@ namespace CoreSchool.Models
         public string Country { get; set; }
 
         public string City { get; set; }
+
+        public string Location { get; set; }
+
 
         public TypesSchool Type { get; set; }
 
@@ -32,27 +36,11 @@ namespace CoreSchool.Models
             type = Type;
             (Country, City) = (country, city);
         }
+        #endregion
 
-        public void PrintCourses()
-        {
-            string title = $"Courses for  {Name}";
-            Printer.WriteTitle(title);
-            if (Courses.Count > 0)
-            {
-                foreach (Course course in Courses)
-                {
-                    WriteLine(course);
-                }
-            }
-            else
-            {
-                WriteLine("Empty Courses...");
-            }
-            Printer.DrawLine(length: title.Length);
-        }
-
+        #region CrudSchool
         public (bool, Course) RemoveCourseByRef(Course course)
-            => (courses.Remove(course), course);
+        => (courses.Remove(course), course);
 
         public void RemoveByName(string name)
              => courses.RemoveAll(course => course.Name == name);
@@ -65,6 +53,10 @@ namespace CoreSchool.Models
 
         public void AddCourses(List<Course> newCourses)
             => courses.AddRange(newCourses);
+
+        #endregion
+
+        #region PrintFunctions
         public void PrintAllStudents()
         {
             foreach (Course c in Courses)
@@ -89,6 +81,26 @@ namespace CoreSchool.Models
             }
         }
 
+        public void PrintCourses()
+        {
+            string title = $"Courses for  {Name}";
+            Printer.WriteTitle(title);
+            if (Courses.Count > 0)
+            {
+                foreach (Course course in Courses)
+                {
+                    WriteLine(course);
+                }
+            }
+            else
+            {
+                WriteLine("Empty Courses...");
+            }
+            Printer.DrawLine(length: title.Length);
+        }
+
+
+
         public override string ToString()
         {
             string chain = Printer.GetLine(length: 100);
@@ -96,6 +108,25 @@ namespace CoreSchool.Models
             chain += Printer.GetLine(length: 100);
             return chain;
         }
+        
+        #endregion
 
+        #region ILocationFunc
+        public void CleanLocation()
+        {
+            // TODO
+            Printer.DrawLine();
+            Console.WriteLine("Cleaning the Location for the School");
+            Printer.DrawLine();
+            Console.WriteLine("Now cleaning Courses...");
+
+            foreach (Course c in Courses)
+            {
+                c.CleanLocation();
+            }
+
+            Printer.WriteTitle($"{Name} is now clean");
+        }
+        #endregion
     }
 }

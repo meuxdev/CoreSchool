@@ -5,12 +5,13 @@ using CoreSchool.Util;
 namespace CoreSchool.Models
 {
     [DebuggerDisplay("{Name}, {Schedule} {GetType()}")]
-    public sealed class Course : Entity
+    public sealed class Course : Entity, ILocation
     {
         public TypesSchedule Schedule { get; set; }
         public List<Assignment> Assignments { get; set; }
         public List<Student> Students { get; set; }
         public List<Score> Scores { get; set; }
+        string ILocation.Location{ get; set; }
 
         public Course()
         {
@@ -89,6 +90,13 @@ namespace CoreSchool.Models
             {
                 Printer.WriteTitle("No Scores in this course");
             }
+        }
+
+        public void CleanLocation()
+        {
+            Printer.DrawLine();
+            Console.WriteLine("Cleaning the Location for the course");
+            Console.WriteLine($"{Name} course place is now clean");
         }
     }
 }
