@@ -69,8 +69,8 @@ namespace CoreSchool.App
             // eng.PrintDic(dic, printScores: true, printAssignments: false, printStudents: false, printCourses: false);
 
             var dr = new DictionaryReporter(dic);
-
-            dr.GetSchoolList();
+            var evalList = dr.GetScoresList();
+            var assignGT3 = dr.GetAssignmentsList();
             Printer.EnterPause();
 
         }
