@@ -1,16 +1,15 @@
 ﻿using System;
 using CoreSchool.Models;
 using CoreSchool.Util;
-using static System.Console;
 
-namespace CoreSchool
+namespace CoreSchool.App
 {
     class Program
     {
         static void Main(string[] args)
         {
-            AppDomain.CurrentDomain.ProcessExit += ExitEventAction;
-            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.SoundBeep(2000,100000);
+            // AppDomain.CurrentDomain.ProcessExit += ExitEventAction;
+            // AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.SoundBeep(2000,100000);
             EngineSchool eng = new EngineSchool();
             eng.Init();
 
@@ -66,8 +65,12 @@ namespace CoreSchool
             // Dictionary<KeysDicEnum, IEnumerable<Entity>> dic = eng.GetObjDictionary();
             var dic = eng.GetObjDictionary();
 
-            Console.WriteLine("Dict build completed!");
-            eng.PrintDic(dic, printScores: true, printAssignments: false, printStudents: false, printCourses: false);
+            // Console.WriteLine("Dict build completed!");
+            // eng.PrintDic(dic, printScores: true, printAssignments: false, printStudents: false, printCourses: false);
+
+            var dr = new DictionaryReporter(dic);
+
+            dr.GetSchoolList();
             Printer.EnterPause();
 
         }

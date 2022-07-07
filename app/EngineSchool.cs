@@ -1,7 +1,7 @@
 using CoreSchool.Models;
 using CoreSchool.Util;
 
-namespace CoreSchool
+namespace CoreSchool.App
 {
     sealed class EngineSchool
     {

@@ -2,7 +2,7 @@ using CoreSchool.Models;
 
 namespace CoreSchool.Util
 {
-    public class Demo
+    public static class Demo
     {
         public static Random rnd = new Random();
         public static void InitCourses(ref School school)
