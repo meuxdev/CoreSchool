@@ -21,6 +21,11 @@ namespace CoreSchool.Models
             }
             return chain;
         }
+
+        public float GetAverage()
+            => Notes.Sum() / Notes.Count();
+               
+
         public override string ToString()
             => $"Student: {StudentName}\nAssignment: {AssignmentName}\nNotes: {GetNotesString()}";
     }

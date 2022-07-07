@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreSchool.Models;
+using CoreSchool.Util;
 
 
 
@@ -76,18 +77,66 @@ namespace CoreSchool.App
             var dic = new Dictionary<string, IEnumerable<FinalGrade>>();
             var dicAssignScores = GetAssignmentAndScore();
 
-            foreach(KeyValuePair<string, IEnumerable<Score>> assignByScore in dicAssignScores)
+            foreach (KeyValuePair<string, IEnumerable<Score>> assignByScore in dicAssignScores)
             {
                 var avgStudent = from eval in assignByScore.Value
-                            select new FinalGrade {
-                                            StudentName = eval.StudentName,
-                                            Avg = eval.Notes.Sum() / eval.Notes.Count(),
-                                            Name = eval.Name,
-                                            Id = eval.Id
-                                        };
-                dic.Add(assignByScore.Key , avgStudent);
+                                 select new FinalGrade
+                                 {
+                                     StudentName = eval.StudentName,
+                                     Avg = eval.Notes.Sum() / eval.Notes.Count(),
+                                     Name = eval.Name,
+                                     Id = eval.Id
+                                 };
+                dic.Add(assignByScore.Key, avgStudent);
             }
             return dic;
+        }
+
+
+        public Dictionary<string, IEnumerable<FinalGrade>> GetAvgGradesTop(int top)
+        {
+            if (top <= 0)
+            {
+                throw new ArgumentException($"{nameof(top)} should be greater than 0 --");
+            }
+
+            var dic = new Dictionary<string, IEnumerable<FinalGrade>>();
+
+            var dicAssignScores = GetAssignmentAndScore();
+
+            foreach (KeyValuePair<string, IEnumerable<Score>> kp in dicAssignScores)
+            {
+                var topAvg = (from eval in kp.Value
+                              orderby eval.GetAverage() ascending
+                              select new FinalGrade
+                              {
+                                  Avg = eval.GetAverage(),
+                                  Id = eval.Id,
+                                  Name = eval.Name,
+                                  StudentName = eval.StudentName
+                              }).Take(top);
+
+                dic.Add(kp.Key, topAvg);
+            }
+
+            return dic;
+        }
+
+
+        public static void PrintFinalGrades(Dictionary<string, List<FinalGrade>> finalGradesDictionary)
+        {
+            foreach (KeyValuePair<string, List<FinalGrade>> kv in finalGradesDictionary)
+            {
+                Printer.WriteTitle($"Grades Average for {kv.Key}");
+
+                foreach (FinalGrade studentAvg in kv.Value)
+                {
+                    Console.Write($"✔️ Student: {studentAvg.StudentName} Final Grade: {studentAvg.Avg}\n");
+                }
+            }
+
+
+
         }
     }
 }

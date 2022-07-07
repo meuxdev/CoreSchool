@@ -74,18 +74,7 @@ namespace CoreSchool.App
             var evalListWithAssign = dr.GetAssignmentAndScore();
             var averageAssign = dr.GetAvgForStudentByAssign();
 
-            foreach(var item in averageAssign)
-            {
-                Printer.WriteTitle($"Grades Average for {item.Key}");
-
-                foreach(FinalGrade studentAvg in item.Value)
-                {
-                    Console.Write($"✔️ Student: {studentAvg.StudentName} Final Grade: {studentAvg.Avg}\n");
-                }
-            }
-
-
-
+            
             Printer.EnterPause();
         }
 
