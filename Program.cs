@@ -9,7 +9,8 @@ namespace CoreSchool.App
         static void Main(string[] args)
         {
             // AppDomain.CurrentDomain.ProcessExit += ExitEventAction;
-            // AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.SoundBeep(2000,100000);
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Console.Clear();
+            Console.Clear();
             EngineSchool eng = new EngineSchool();
             eng.Init();
 
