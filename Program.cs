@@ -80,7 +80,20 @@ namespace CoreSchool.App
 
             Printer.EnterPause();
 
-            
+            try
+            {
+                // Abrir conexion a la BD
+                // Conectarse a la BD y hacer cosas
+            }
+            catch (Exception x)
+            {
+                // Error por X motivo
+            }
+            finally
+            {
+                // Cerrar conexion a la BD
+                // No importa lo que pase, SIEMPRE hay que cerrar la conexión a la BD.
+            }
         }
 
         private static void ExitEventAction(object? sender, EventArgs e)
