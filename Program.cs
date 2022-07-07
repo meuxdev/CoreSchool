@@ -73,9 +73,14 @@ namespace CoreSchool.App
             var assignGT3 = dr.GetAssignmentsList();
             var evalListWithAssign = dr.GetAssignmentAndScore();
             var averageAssign = dr.GetAvgForStudentByAssign();
+            var topAverageStudents = dr.GetTopAvgFinalGrades(3);
+
+            DictionaryReporter.PrintFinalGrades(averageAssign);
+            DictionaryReporter.PrintFinalGrades(topAverageStudents);
+
+            Printer.EnterPause();
 
             
-            Printer.EnterPause();
         }
 
         private static void ExitEventAction(object? sender, EventArgs e)

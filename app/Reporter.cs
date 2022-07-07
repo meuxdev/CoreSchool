@@ -93,7 +93,7 @@ namespace CoreSchool.App
         }
 
 
-        public Dictionary<string, IEnumerable<FinalGrade>> GetAvgGradesTop(int top)
+        public Dictionary<string, IEnumerable<FinalGrade>> GetTopAvgFinalGrades(int top)
         {
             if (top <= 0)
             {
@@ -107,7 +107,7 @@ namespace CoreSchool.App
             foreach (KeyValuePair<string, IEnumerable<Score>> kp in dicAssignScores)
             {
                 var topAvg = (from eval in kp.Value
-                              orderby eval.GetAverage() ascending
+                              orderby eval.GetAverage() descending
                               select new FinalGrade
                               {
                                   Avg = eval.GetAverage(),
@@ -123,20 +123,17 @@ namespace CoreSchool.App
         }
 
 
-        public static void PrintFinalGrades(Dictionary<string, List<FinalGrade>> finalGradesDictionary)
+        public static void PrintFinalGrades(Dictionary<string, IEnumerable<FinalGrade>> finalGradesDictionary)
         {
-            foreach (KeyValuePair<string, List<FinalGrade>> kv in finalGradesDictionary)
+            foreach (KeyValuePair<string, IEnumerable<FinalGrade>> kv in finalGradesDictionary)
             {
-                Printer.WriteTitle($"Grades Average for {kv.Key}");
+                Printer.WriteTitle($"Final Grades for {kv.Key}");
 
                 foreach (FinalGrade studentAvg in kv.Value)
                 {
                     Console.Write($"✔️ Student: {studentAvg.StudentName} Final Grade: {studentAvg.Avg}\n");
                 }
             }
-
-
-
         }
     }
 }
