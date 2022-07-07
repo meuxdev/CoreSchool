@@ -68,9 +68,26 @@ namespace CoreSchool.App
                                     select score;
                 dic.Add(assign, evalForAssign);
             }
-
             return dic;
         }
 
+        public Dictionary<string, IEnumerable<FinalGrade>> GetAvgForStudentByAssign()
+        {
+            var dic = new Dictionary<string, IEnumerable<FinalGrade>>();
+            var dicAssignScores = GetAssignmentAndScore();
+
+            foreach(KeyValuePair<string, IEnumerable<Score>> assignByScore in dicAssignScores)
+            {
+                var avgStudent = from eval in assignByScore.Value
+                            select new FinalGrade {
+                                            StudentName = eval.StudentName,
+                                            Avg = eval.Notes.Sum() / eval.Notes.Count(),
+                                            Name = eval.Name,
+                                            Id = eval.Id
+                                        };
+                dic.Add(assignByScore.Key , avgStudent);
+            }
+            return dic;
+        }
     }
 }

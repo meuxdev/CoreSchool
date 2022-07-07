@@ -72,8 +72,21 @@ namespace CoreSchool.App
             var evalList = dr.GetScoresList();
             var assignGT3 = dr.GetAssignmentsList();
             var evalListWithAssign = dr.GetAssignmentAndScore();
-            Printer.EnterPause();
+            var averageAssign = dr.GetAvgForStudentByAssign();
 
+            foreach(var item in averageAssign)
+            {
+                Printer.WriteTitle($"Grades Average for {item.Key}");
+
+                foreach(FinalGrade studentAvg in item.Value)
+                {
+                    Console.Write($"✔️ Student: {studentAvg.StudentName} Final Grade: {studentAvg.Avg}\n");
+                }
+            }
+
+
+
+            Printer.EnterPause();
         }
 
         private static void ExitEventAction(object? sender, EventArgs e)
