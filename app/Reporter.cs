@@ -13,11 +13,11 @@ namespace CoreSchool.App
 
         private Dictionary<KeysDicEnum, IEnumerable<Entity>> _dic { get; set; }
 
-        public DictionaryReporter(Dictionary<KeysDicEnum, IEnumerable<Entity>> dic) 
+        public DictionaryReporter(Dictionary<KeysDicEnum, IEnumerable<Entity>> dic)
         {
-            if( dic is null)
+            if (dic is null)
                 throw new ArgumentNullException(nameof(dic));
-            
+
             _dic = dic;
         }
 
@@ -25,11 +25,12 @@ namespace CoreSchool.App
         public IEnumerable<Score> GetScoresList()
         {
             // var list = _dic.GetValueOrDefault(KeysDicEnum.School);
-            var response = _dic.TryGetValue(KeysDicEnum.Scores, 
+            var response = _dic.TryGetValue(KeysDicEnum.Scores,
                 out IEnumerable<Entity> list
             );
 
-            if(!response){
+            if (!response)
+            {
                 // throw new KeyNotFoundException($"{KeysDicEnum.School} not registered on the dictionary");
                 return new List<Score>();
             }
@@ -37,22 +38,39 @@ namespace CoreSchool.App
             return list.Cast<Score>();
         }
 
-        public IEnumerable<string> GetAssignmentsList() 
-        {
-            IEnumerable<Score> listScores = GetScoresList();
 
-            return (from Score s in listScores
-                   where s.Notes.Sum() > 3.0f
-                   select s.AssignmentName).Distinct();
+        public IEnumerable<string> GetAssignmentsList()
+        {
+            return this.GetAssignmentsList(out IEnumerable<Score> _empty);
+        }
+
+        public IEnumerable<string> GetAssignmentsList(
+            out IEnumerable<Score> scoresList
+        )
+        {
+            scoresList = GetScoresList();
+
+            return (from Score s in scoresList
+                        //    where s.Notes.Sum() > 3.0f
+                    select s.AssignmentName).Distinct();
         }
 
 
-        public Dictionary<string, Score> GetAssignmentAndScore()
+        public Dictionary<string, IEnumerable<Score>> GetAssignmentAndScore()
         {
-            var dic = new Dictionary<string, Score>();
+            var dic = new Dictionary<string, IEnumerable<Score>>();
+            var assignList = GetAssignmentsList(out IEnumerable<Score> scoresList);
+
+            foreach (string assign in assignList)
+            {
+                var evalForAssign = from score in scoresList
+                                    where score.AssignmentName == assign
+                                    select score;
+                dic.Add(assign, evalForAssign);
+            }
 
             return dic;
         }
-        
+
     }
 }

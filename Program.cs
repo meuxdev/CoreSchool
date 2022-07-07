@@ -71,6 +71,7 @@ namespace CoreSchool.App
             var dr = new DictionaryReporter(dic);
             var evalList = dr.GetScoresList();
             var assignGT3 = dr.GetAssignmentsList();
+            var evalListWithAssign = dr.GetAssignmentAndScore();
             Printer.EnterPause();
 
         }
